@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Green Bean Casserole | FRC 1736</title>
+        <meta name="description" content="This is the 2020 FRC 1736 Scouting Application, for use in the FIRST Infinite Recharge game">
+        <meta name="vieport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/main.css">
+
+        <style type="text/css">
+            #div1,
+            #div2 {
+                float: left;
+                width: 64px;
+                height: 64px;
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid #aaaaaa;
+            }
+
+        </style>
+
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/qrcode.min.js"></script>
+
+    </head>
+
+    <body>
+        <div id ="everyThing">
+            <div id="teamLabel">
+                Team Number
+                <br>
+            </div>
+            <div id="teamDisp">
+                <input type="tel" id="teamNumber" placeholder="0" maxlength="4">
+                <br>
+            </div>
+            <ul class='tabs'>
+                <li><a href='#MatchData' id="MatchDataLink">Match Info</a>
+                </li>
+                <li><a href='#AutoData' id="AutoDataLink">Autonomous</a>
+                </li>
+                <li><a href='#TeleoperatedData' id="TeleoperatedDataLink">Teleop</a>
+                </li>
+                <li><a href='#PostMatch' id="PostMatchLink">Post Match</a>
+                </li>
+                <li><a href='#MatchHistory' id="MatchHistoryLink">Match History</a>
+                </li>
+                <li><a href='#About' id="AboutLink">About</a>
+                </li>
+            </ul>
+
+
+            <div id="MatchData">
+                <!-- ------------------------------ -->
+                <!-- ----------Match Data---------- -->
+                <!-- ------------------------------ -->
+                <div id="matchTitles">
+                    Scout Name
+                    <br><br>
+                    Match Number
+                    <br><br>
+                    Match Type
+                    <br><br>
+                    Scouting Station
+                </div>
+                <div id="matchFields">
+                    <input type="text" id="scoutName" placeholder="*" maxlength="10">
+                    <br>
+                    <input type="tel" id="matchNumber" placeholder="0" onchange="idScoutingStation()" maxlength="3">
+                    <br>
+                    <select id="matchType">
+                        <option value="Qualification">Qualification</option>
+                        <option value="Practice">Practice</option>
+                        <option value="Elimination">Elimination</option>
+                    </select>
+                    <br>
+                    <select id="whichRobot"onchange="idScoutingStation()">
+                        <option value="R1">Red 1</option>
+                        <option value="R2">Red 2</option>
+                        <option value="R3">Red 3</option>
+                        <option value="B1">Blue 1</option>
+                        <option value="B2">Blue 2</option>
+                        <option value="B3">Blue 3</option>
+                    </select>
+                </div>
+            </div>
+
+
+            
+            <div id="AutoData">
+                <!-- ------------------------------------- -->
+                <!-- ----------Autonomous Period---------- -->
+                <!-- ------------------------------------- -->
+                <div id="autoScoring_left" ></div>
+                <div id="autoScoring_center"></div>
+                <div id="autoScoring_right"></div>
+            </div>
+
+
+            <div id="TeleoperatedData">
+                <!-- --------------------------------------- -->
+                <!-- ----------Teleoperated Period---------- -->
+                <!-- --------------------------------------- -->
+                <div id="teleopScoring_left" ></div>
+                <div id="teleopScoring_center"></div>
+                <div id="teleopScoring_right"></div>
+            </div>
+
+            <div id="PostMatch">
+                <!-- ----------------------------- -->
+                <!-- ----------Post Match--------- -->
+                <!-- ----------------------------- -->
+                <div id="yearly_Code"></div>
+                <br>
+                <div id="PositionMap"></div>
+                <div id= "constant_Code">
+                    <textarea placeholder="Comments" id="comments" maxlength="140"></textarea>
+                    <br>
+                    <button id="submitReport" onclick="submitReport();">Submit Report</button>
+                </div>
+                
+            </div>
+                
+            <div id="MatchHistory">
+                <!-- QR Code -->
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+                    </div>
+                </div>
+                <div id="HistoryArea">
+                    <textarea id="HistoryCSV"></textarea>
+                </div>
+                <br>
+                <button onclick="$( '#historyPass').show(100,null);">Clear History</button>
+                <div id="historyPass">
+                    Enter Password to Clear: <input type="text" id="history_password" placeholder="Password">
+                    <br>
+                    <button onclick="clearHistory();">Confirm</button>
+                </div>
+            </div>
+
+            <div id="About">
+                2020 Scouting Tool for Infinite Recharge. Updated each year by students and mentors from FRC 1736 Robot Casserole.
+                <br><br>
+                Andrew Gurik :: Nick Dunne :: Aaron Thune :: Dan Thune :: Tim Delaney :: Zach Yarnot :: Jack Collins :: Tom Millard :: Zoe Schmidt :: Miles Hankins :: Robert Holeman
+                <br><br>
+                Also, a special thanks to Sir Alfred Mufasa Commit the Frog
+                <br><br>
+                Also, Sam Perkins requested an honorable mention. This mention may be deleted upon his graduation from this team.
+                <br><br>
+                <a class="downloadLink" href="data/matchData.csv" download>Download CSV data</a>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $('ul.tabs').each(function(){
+                // For each set of tabs, we want to keep track of
+                // which tab is active and it's associated content
+                var $active, $content, $links = $(this).find('a');
+
+                // If the location.hash matches one of the links, use that as the active tab.
+                // If no match is found, use the first link as the initial active tab.
+                $active = $($links.filter('[href=" '+location.hash+' "]')[0] || $links[0]);
+                $active.addClass('active');
+                $content = $($active.attr('href'));
+
+                // Hide the remaining content
+                $links.not($active).each(function () {
+                    $($(this).attr('href')).hide();
+                });
+
+                // Bind the click event handler
+                $(this).on('click', 'a', function(e){
+                    // Make the old tab inactive.
+                    $active=$(document.getElementsByClassName("active")[0]);
+                    $content=$(document.getElementsByClassName("active")[0].getAttribute("href"));
+                    $active.removeClass('active');
+                    $content.hide();
+
+                    // Update the variables with the new link and content
+                    $active = $(this);
+                    $content = $($(this).attr('href'));
+
+                    // Make the tab active.
+                    $active.addClass('active');
+                    $content.show();
+
+                    // Prevent the anchor's default click action
+                    e.preventDefault();
+                
+                });
+                
+                
+                
+            });
+            
+                
+            $("#historyPass").hide(0,null);
+            document.getElementById("MatchHistoryLink").onclick = function (){
+                var existingData = localStorage.getItem("MatchData");
+                document.getElementById("HistoryCSV").value = existingData == null ? " " : existingData;
+            };
+        </script>
+        <script type="text/javascript" src="./js/GreenBean.js"></script>
+        <script type="text/javascript" src="./js/2020.js"></script>
+        <script type="text/javascript" src="./js/PositionMap.js"></script>
+        <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+        <script type="text/javascript" src="./js/mobileGestures.js"></script>
+        
+        
+        
+    </body>
+</html>
