@@ -97,7 +97,7 @@ button {
    text-shadow: rgba(0,0,0,.4) 0 1px 0;
    color: #ccffff;
    font-size: 25px;
-   font-family: courier, monospace;
+   font-family: "Comic Sans MS", "Comic Sans", cursive;
    text-decoration: none;
    vertical-align: middle;
 }
@@ -117,7 +117,7 @@ body {
 	line-height: 1.4;
     margin: 1.5;
     font-size: 18px;
-    font-family: courier, monospace;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: #00331a;
 }
 
@@ -128,7 +128,7 @@ input[type="text"], input[type="tel"], input[type="number"], input[type="checkbo
     line-height: 1.2em;
     background: #00913d;
     color: #ccffff;
-    font-family: courier, monospace;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     background: -webkit-gradient(linear, left top, left bottom, from(#00333d), to(#00331a));
     -webkit-appearance: none;
     /*box-shadow*/
