@@ -19,19 +19,19 @@ function common(){
 
 
 function AutoFormInit(){
-    addElList("autoScoring_left",PC5Bar("Autonomous","Upper Goal"))
+    addElList("autoScoring_left",PC2Bar("Autonomous","Upper Goal"))
     addElList("autoScoring_left",[BR])
     addElList("autoScoring_left",button("undoScore('autonomous');","Undo Score"))
-    addElList("autoScoring_center",PC5Bar("Autonomous","Lower Goal"))
+    addElList("autoScoring_center",PC2Bar("Autonomous","Lower Goal"))
     addElList("autoScoring_right",title("Initiation Line"))
     addElList("autoScoring_right",checkBox("Left Init Line?:","leftInit"))
 }
 
 function TeleFormInit(){
-    addElList("teleopScoring_left",PC5Bar("Teleop","Upper Goal"))
+    addElList("teleopScoring_left",PC2Bar("Teleop","Upper Goal"))
     addElList("teleopScoring_left",[BR])
     addElList("teleopScoring_left",button("undoScore('teleop');","Undo Score"))
-    addElList("teleopScoring_center",PC5Bar("Teleop","Lower Goal"))
+    addElList("teleopScoring_center",PC2Bar("Teleop","Lower Goal"))
     addElList("teleopScoring_right",title("Control Panel"))
     addElList("teleopScoring_right",checkBox("Spun Ctrl Panel:","spunWheel"))
     addElList("teleopScoring_right",checkBox("Positioned Ctrl Panel:","posWheel"))
@@ -55,16 +55,16 @@ function addElList(id,elList){
     }
 }
 
-function PC5Bar(period,type){
+function PC2Bar(period,type){
     Title=document.createElement("H3")
     Title.innerHTML=type
     TR=document.createElement("TR")
-    for(let i=1; i<6; i++){
+    for(let i=1; i<3; i++){
         TD=document.createElement("TD")
         TD.innerHTML="<button onclick=\"pcScore('"+period.toLowerCase()+"', '"+type.toLowerCase()+"', "+i+");\">"+i+"</button>"
         TR.appendChild(TD)
     }
-    txt=document.createTextNode("Power Cells Scored in "+type+":")
+    txt=document.createTextNode("Cargo Scored in "+type+":")
     id=type.split(' ').join('')+"Count"+period+"Display"
     A=createInnerHtmlReader(id,period.toLowerCase(),type.toLowerCase())
     return [Title,TR,txt,A,BR]
