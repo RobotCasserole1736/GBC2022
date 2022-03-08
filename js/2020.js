@@ -23,8 +23,8 @@ function AutoFormInit(){
     addElList("autoScoring_left",[BR])
     addElList("autoScoring_left",button("undoScore('autonomous');","Undo Score"))
     addElList("autoScoring_center",PC2Bar("Autonomous","Lower Goal"))
-    addElList("autoScoring_right",title("Initiation Line"))
-    addElList("autoScoring_right",checkBox("Left Init Line: ","leftInit"))
+    addElList("autoScoring_right",title("Tarmac"))
+    addElList("autoScoring_right",checkBox("Left Tarmac: ","leftTarmac"))
 }
 
 function TeleFormInit(){
@@ -39,7 +39,7 @@ function TeleFormInit(){
 function PostMatchFormInit(){
     addElList("yearly_Code",multipleChoice("Driver Rating:","driverRatingDisplay",driverRatingText))
     addElList("yearly_Code",multipleChoice("Defense Rating:","defenseReview",defenseRatingText))
-    addElList("yearly_Code",checkBox("Can Intake from Loading Station: ","intakeLoading"))
+    addElList("yearly_Code",checkBox("Can Intake from Terminal: ","terminalLoading"))
     addElList("yearly_Code",checkBox("Can Intake from Ground: ","intakeGround"))
     addElList("yearly_Code",checkBox("Penalty Prone: ","penaltyProne"))
     addElList("yearly_Code",checkBox("Far Shooting: ","farShooting"))
