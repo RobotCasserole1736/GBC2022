@@ -7,7 +7,7 @@ let multipleChoiceList=[]
 
 
 let climbText=["No Climb","Parked & Sat","Side Climb","Middle Climb"]
-let driverRatingText = ["Doesn't Drive","Don't Pick,  Potentially hinders Allies, Does not go for Objectives", "Potentially Hinders Allies but Scores Points, Inefficient Driving", " Does not Hinder Allies, Struggles with Defense,","Does not Hinder Allies, Recovers well from Defense", "Almost Flawless, Able to Avoid Defense, Always going for Objectives"];
+let driverRatingText = ["Doesn't Drive","Inefficient Driving", "Acceptable Driving", "Drives Well",];
 let defenseRatingText = ["Didn't Defend","Hinders Allies; Inefficient Defense","Does not Hinder Allies; Inefficient Defense","Does not Hinder Allies; Great Defense"]
 
 function common(){
