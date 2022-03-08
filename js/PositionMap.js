@@ -13,6 +13,10 @@ let HardLimit=3
 let CHlist={}
 initialization()
 function initialization(){
+    /*
+
+    Commented out in case this is needed for formatting later.
+
     myMapImage = new Image(widthMap, heightMap);
     myMapImage.src = 'images//field_bg.png';
     myCHImage = new Image(widthCH, heightCH);
@@ -31,7 +35,7 @@ function initialization(){
         MapContext = Map.getContext('2d');
         MapContext.font = "30px Arial";
         drawMap()
-        Map.addEventListener("mousedown", function(e){getMousePosition(e);}); 
+        Map.addEventListener("mousedown", function(e){getMousePosition(e);}); */
     }
     
 }

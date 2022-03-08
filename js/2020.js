@@ -24,7 +24,7 @@ function AutoFormInit(){
     addElList("autoScoring_left",button("undoScore('autonomous');","Undo Score"))
     addElList("autoScoring_center",PC2Bar("Autonomous","Lower Goal"))
     addElList("autoScoring_right",title("Initiation Line"))
-    addElList("autoScoring_right",checkBox("Left Init Line?:","leftInit"))
+    addElList("autoScoring_right",checkBox("Left Init Line: ","leftInit"))
 }
 
 function TeleFormInit(){
@@ -33,16 +33,17 @@ function TeleFormInit(){
     addElList("teleopScoring_left",button("undoScore('teleop');","Undo Score"))
     addElList("teleopScoring_center",PC2Bar("Teleop","Lower Goal"))
     addElList("teleopScoring_right",multipleChoice("Climbing:","climbPos",climbText))
-    addElList("teleopScoring_right",checkBox("Group climber:","group climbing"))
+    addElList("teleopScoring_right",checkBox("Group Climber: ","groupClimbing"))
 }
 
 function PostMatchFormInit(){
     addElList("yearly_Code",multipleChoice("Driver Rating:","driverRatingDisplay",driverRatingText))
     addElList("yearly_Code",multipleChoice("Defense Rating:","defenseReview",defenseRatingText))
-    addElList("yearly_Code",checkBox("Can Intake from Loading Station?:","intakeLoading"))
-    addElList("yearly_Code",checkBox("Can Intake from Ground?:","intakeGround"))
-    addElList("yearly_Code",checkBox("Penalty Prone?:","penaltyProne"))
-    addElList("yearly_Code",checkBox("Shot from Numerous Locations:","numerousBox"))
+    addElList("yearly_Code",checkBox("Can Intake from Loading Station: ","intakeLoading"))
+    addElList("yearly_Code",checkBox("Can Intake from Ground: ","intakeGround"))
+    addElList("yearly_Code",checkBox("Penalty Prone: ","penaltyProne"))
+    addElList("yearly_Code",checkBox("Far Shooting: ","farShooting"))
+    addElList("yearly_Code",checkBox("Close Shooting: ","closeShooting"))
 }
 
 function addElList(id,elList){
@@ -61,7 +62,7 @@ function PC2Bar(period,type){
         TD.innerHTML="<button onclick=\"pcScore('"+period.toLowerCase()+"', '"+type.toLowerCase()+"', "+i+");\">"+i+"</button>"
         TR.appendChild(TD)
     }
-    txt=document.createTextNode("Cargo Scored in "+type+":")
+    txt=document.createTextNode("Cargo Scored in "+type+": ")
     id=type.split(' ').join('')+"Count"+period+"Display"
     A=createInnerHtmlReader(id,period.toLowerCase(),type.toLowerCase())
     return [Title,TR,txt,A,BR]
