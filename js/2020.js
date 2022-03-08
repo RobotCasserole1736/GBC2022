@@ -6,7 +6,7 @@ let checkBoxList=[]
 let multipleChoiceList=[]
 
 
-let climbText=["No Climb","Parked & Sat","Side Climb","Middle Climb"]
+let climbText=["None","Low","Mid","High","Traversal"]
 let driverRatingText = ["Doesn't Drive","Inefficient Driving", "Acceptable Driving", "Drives Well",];
 let defenseRatingText = ["Didn't Defend","Hinders Allies; Inefficient Defense","Does not Hinder Allies; Inefficient Defense","Does not Hinder Allies; Great Defense"]
 
@@ -32,11 +32,8 @@ function TeleFormInit(){
     addElList("teleopScoring_left",[BR])
     addElList("teleopScoring_left",button("undoScore('teleop');","Undo Score"))
     addElList("teleopScoring_center",PC2Bar("Teleop","Lower Goal"))
-    addElList("teleopScoring_right",title("Control Panel"))
-    addElList("teleopScoring_right",checkBox("Spun Ctrl Panel:","spunWheel"))
-    addElList("teleopScoring_right",checkBox("Positioned Ctrl Panel:","posWheel"))
     addElList("teleopScoring_right",multipleChoice("Climbing:","climbPos",climbText))
-    addElList("teleopScoring_right",checkBox("Balanced:","balance"))
+    addElList("teleopScoring_right",checkBox("Group climber:","group climbing"))
 }
 
 function PostMatchFormInit(){
