@@ -112,13 +112,13 @@ button:active {
 }
 
 body {
-	background: #8f8e8e;
+	background: hsl(0, 1%, 19%);
     padding: 0.5em;
 	line-height: 1.4;
     margin: 1.5;
     font-size: 18px;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
-    color: #00331a;
+    color: #07a559;
 }
 
 input[type="text"], input[type="tel"], input[type="number"], input[type="checkbox"], textarea, select {
