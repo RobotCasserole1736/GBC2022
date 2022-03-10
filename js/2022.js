@@ -202,7 +202,7 @@ function initializeQRTable(){
     table.setAttribute("class","Map");
     TR=document.createElement("TR");
     TR.setAttribute("class","Map");
-    table.width=widthMap
+    table.width=800
     TH1=document.createElement("TH");
     TH1.innerHTML="QRBtn"
     TH1.setAttribute("class","Map");
