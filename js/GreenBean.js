@@ -64,17 +64,7 @@ function defaultSaveP1(){
 	output += document.getElementById("matchType").value + ",";
 	return output
 }
-function defaultSaveP2(){
-	let output = ""
-	mapData=positionOutput()
-	output += mapData.length+","
-	for(let i=0; i<mapData.length; i++){
-		output += mapData[i][0] + ","
-		output += mapData[i][1] + ","
-	}
-	output += dataSanitize(document.getElementById("comments").value);
-	return output
-}
+
 
 
 function submitReport(){

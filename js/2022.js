@@ -155,7 +155,7 @@ function saveData()
     for(let i=0; i<multipleChoiceList.length;i++){
         matchData+=document.getElementById(multipleChoiceList[i]).value+","
     }
-	matchData +=defaultSaveP2()
+	
     matchData +="\n";  // add a single newline at the end of the data
     addQRRow(matchData)
 	var existingData = localStorage.getItem("MatchData");
