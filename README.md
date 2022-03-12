@@ -9,8 +9,7 @@ We run this on tablets and get the data from scanning generated QR codes.
 ## MATCH INFO:
 The match info section of this app has the things we need to know before a match.
 
-First, type in who you are in the scout name bar
-Then, choose what type of match they are playing in (qualification, practice, elimination). The settings you choose for this will stay until you change them again.
+First, type in who you are in the scout name bar. Then, choose what type of match they are playing in (qualification, practice, elimination). The settings you choose for this will stay until you change them again.
 
 ## AUTO:
 This section of the app tells us what this team did in autonomous.
@@ -54,14 +53,14 @@ Post match section is all about how they did overall and also where the team sho
     Intake Abilities:
 
         Click on the checkboxes if they are applicable to the robot. 
-        As in, click on the checkbox for "Can Intake from ground?" 
+        As in, click on the checkbox for "Can Intake from ground" 
         if they can, indeed, intake from the ground.
 
 Are they prone to getting penalties? If so, click on the penalty prone checkbox.
 
     Shooting Positions:
 
-        If they shot from up close, then click "Close Shooting." If they shot from somewhere that isn't up close, click "Far Shooting." If they shot from a combination of these places, click both buttons.
+        If they shot from up close, then click "Close Shooting." If they shot from somewhere that isn't up close, click "Far Shooting." If they shot from a combination of these places, click both checkboxes.
 
         Be sure to use the map as a reference for what is close and what is far.
 
