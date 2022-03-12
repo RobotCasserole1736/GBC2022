@@ -1,6 +1,6 @@
 
 
-![logo](ReadMeResources/InfiniteRecharge2020CasseroleBannerLogoEdited.jpg)
+![logo](ReadMeResources/RedWingLogo.jpg)
 
 
 GreenBeanCasserole is Robot Casserole's web based match scouting system
