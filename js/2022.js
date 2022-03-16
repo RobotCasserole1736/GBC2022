@@ -153,11 +153,12 @@ function saveData()
     }
     // Multiple Choice Boxes
     for(let i=0; i<multipleChoiceList.length;i++){
-        matchData+=document.getElementById(multipleChoiceList[i]).value+","
+        matchData+=document.getElementById(multipleChoiceList[i]).value+",";
     }
-	
+    addQRRow(matchData+"\n");
+    matchData += dataSanitize(document.getElementById("comments").value)+",";
     matchData +="\n";  // add a single newline at the end of the data
-    addQRRow(matchData)
+
 	var existingData = localStorage.getItem("MatchData");
 	if(existingData == null)
 		localStorage.setItem("MatchData", matchData);
