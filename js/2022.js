@@ -4,16 +4,22 @@ let BR=document.createElement("br")
 let innerHTMLList=[]
 let checkBoxList=[]
 let multipleChoiceList=[]
+let pitMultipleChoiceList=[]
 
 
 let climbText=["None","Low","Mid","High","Traversal"]
 let driverRatingText = ["Doesn't Drive","Inefficient Driving", "Acceptable Driving", "Drives Well",];
 let defenseRatingText = ["Didn't Defend","Hinders Allies; Inefficient Defense","Does not Hinder Allies; Inefficient Defense","Does not Hinder Allies; Great Defense"]
+let drivetrainTypeText = ["Swerve", "West Coast", "Mecanum", "Other",];
+let bumperQualityText = ["Low", "Medium", "High",];
+let generalSizeText = ["Standard", "Small",];
+let overallQualityText = ["Low", "Medium", "High",];
 
 function common(){
     AutoFormInit()
     TeleFormInit()
     PostMatchFormInit()
+    PitScoutingFormInit()
     initializeQRTable()
 }
 
@@ -32,18 +38,25 @@ function TeleFormInit(){
     addElList("teleopScoring_left",[BR])
     addElList("teleopScoring_left",button("undoScore('teleop');","Undo Score"))
     addElList("teleopScoring_center",PC2Bar("Teleop","Lower Goal"))
-    addElList("teleopScoring_right",multipleChoice("Climbing:","climbPos",climbText))
+    addElList("teleopScoring_right",multipleChoice("Climbing:","climbPos",climbText, false))
     addElList("teleopScoring_right",checkBox("Group Climber: ","groupClimbing"))
 }
 
 function PostMatchFormInit(){
-    addElList("yearly_Code",multipleChoice("Driver Rating:","driverRatingDisplay",driverRatingText))
-    addElList("yearly_Code",multipleChoice("Defense Rating:","defenseReview",defenseRatingText))
+    addElList("yearly_Code",multipleChoice("Driver Rating:","driverRatingDisplay",driverRatingText, false))
+    addElList("yearly_Code",multipleChoice("Defense Rating:","defenseReview",defenseRatingText, false))
     addElList("yearly_Code",checkBox("Can Intake from Terminal: ","terminalLoading"))
     addElList("yearly_Code",checkBox("Can Intake from Ground: ","intakeGround"))
     addElList("yearly_Code",checkBox("Penalty Prone: ","penaltyProne"))
     addElList("yearly_Code",checkBox("Far Shooting: ","farShooting"))
     addElList("yearly_Code",checkBox("Close Shooting: ","closeShooting"))
+}
+
+function PitScoutingFormInit(){
+    addElList("PitScoutingInput",multipleChoice("Drivetrain Type:", "drivetrainType",drivetrainTypeText, true))
+    addElList("PitScoutingInput",multipleChoice("Bumper Quality:", "bumperQuality",bumperQualityText, true))
+    addElList("PitScoutingInput",multipleChoice("General Size:", "generalSize",generalSizeText, true))
+    addElList("PitScoutingInput",multipleChoice("Overall Quality:", "overallQuality",overallQualityText, true))
 }
 
 function addElList(id,elList){
@@ -57,7 +70,7 @@ function PC2Bar(period,type){
     Title=document.createElement("H3")
     Title.innerHTML=type
     TR=document.createElement("TR")
-    for(let i=1; i<3; i++){
+    for(let i=1; i<2; i++){
         TD=document.createElement("TD")
         TD.innerHTML="<button onclick=\"pcScore('"+period.toLowerCase()+"', '"+type.toLowerCase()+"', "+i+");\">"+i+"</button>"
         TR.appendChild(TD)
@@ -75,6 +88,13 @@ function checkBox(TitleIn, id){
     return [Div]
 }
 
+function tarmacCheckBox(TitleIn, id){
+    Div=document.createElement("div")
+    Div.innerHTML=TitleIn+"<input type='checkbox' id='"+id+"' onchange ='updateDataTarmac();'>"
+    checkBoxList.push(id)
+    return [Div]
+}
+
 function title(text){
     Text=document.createElement("H3")
     Text.innerHTML=text
@@ -88,7 +108,7 @@ function button(onClick, text){
 }
 
 
-function multipleChoice(TitleIn, id, Choices){
+function multipleChoice(TitleIn, id, Choices, isPit){
     Title=document.createElement("H3")
     Title.innerHTML=TitleIn
     Form=document.createElement("select")
@@ -99,7 +119,12 @@ function multipleChoice(TitleIn, id, Choices){
         choice.innerHTML=Choices[i]
         Form.appendChild(choice)
     }
-    multipleChoiceList.push(id)
+    if (isPit){
+        pitMultipleChoiceList.push(id)
+    }
+    else{
+        multipleChoiceList.push(id)
+    }
     return[Title,Form,BR]
 
 }
@@ -113,6 +138,7 @@ function createInnerHtmlReader(id,period,type){
 }
 
 function updateData(){
+    console.log("update")
     var scoreList={}
     for(let i=0; i<innerHTMLList.length;i++){
         scoreList[innerHTMLList[i][0]]=0
@@ -125,6 +151,25 @@ function updateData(){
     }
 }
 
+function updateDataTarmac(){
+    console.log("update")
+    setTimeout(startReminder, 5000)
+    var scoreList={}
+    for(let i=0; i<innerHTMLList.length;i++){
+        scoreList[innerHTMLList[i][0]]=0
+        for(let j = 0; j< Score_Stack[innerHTMLList[i][1]].length; j++){
+            if(Score_Stack[innerHTMLList[i][1]][j][0] == innerHTMLList[i][2]){
+                scoreList[innerHTMLList[i][0]] += parseInt(Score_Stack[innerHTMLList[i][1]][j][1],10);
+            }
+        }
+        document.getElementById(innerHTMLList[i][0]).innerHTML = scoreList[innerHTMLList[i][0]];
+    }
+}
+
+function startReminder(){
+    alert("Hello");
+}
+
 function resetForm(){
     for(let i=0; i<innerHTMLList.length;i++){
         Score_Stack[innerHTMLList[i][1]]=new Array();
@@ -134,6 +179,9 @@ function resetForm(){
     }
     for(let i=0; i<multipleChoiceList.length;i++){
         document.getElementById(multipleChoiceList[i]).value=0
+    }
+    for(let i=0; i<pitMultipleChoiceList.length;i++){
+        document.getElementById(pitMultipleChoiceList[i]).value=0
     }
     defaultReset()
     updateData()
@@ -167,6 +215,55 @@ function saveData()
 	document.getElementById("HistoryCSV").value = localStorage.getItem("MatchData");
 	serverSubmit(matchData);
 }
+
+function savePitData()
+{
+	var matchData = (new Date()).toISOString()+",";
+	matchData += dataSanitize(document.getElementById("scoutName").value) + ",";
+	matchData += dataSanitize(document.getElementById("teamNumber").value) + ",";
+    // Multiple Choice Boxes
+    for(let i=0; i<pitMultipleChoiceList.length;i++){
+        matchData+=document.getElementById(pitMultipleChoiceList[i]).value+",";
+    }
+    matchData += dataSanitize(document.getElementById("pitComments").value)+",";
+    matchData +="\n";  // add a single newline at the end of the data
+	//alert(matchData);
+    serverPitSubmit(matchData);
+    uploadRobotPhoto();
+}
+
+function uploadRobotPhoto() {
+
+    var files = document.getElementById("robotPhoto").files;
+ 
+    if(files.length > 0 && files[0].size < 15000000){
+ 
+       var formData = new FormData();
+       formData.append("file", files[0]);
+ 
+       var xhttp = new XMLHttpRequest();
+ 
+       // Set POST method and ajax file path
+       xhttp.open("POST", "uploadPhoto.php", true);
+ 
+       // call on request changes state
+       xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+ 
+            var response = this.responseText;
+            if(response == 1){
+               alert("Upload successfully.");
+            }else{
+               alert("File not uploaded.");
+            }
+          }
+       };
+ 
+       // Send request with data
+       xhttp.send(formData);
+    }
+ 
+ }
 
 
 //makeCode();

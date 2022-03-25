@@ -56,6 +56,8 @@
                 </li>
                 <li><a href='#About' id="AboutLink">About</a>
                 </li>
+                <li><a href='#PitScouting' id="PitScoutingLink">Pit Scouting</a>
+                </li>
             </ul>
 
 
@@ -66,7 +68,7 @@
                 <div id="matchTitles">
                     Scout Name
                     <br><br>
-                    Match Number
+                    Match Number 
                     <br><br>
                     Match Type
                     <br><br>
@@ -103,6 +105,10 @@
                 <div id="autoScoring_left" ></div>
                 <div id="autoScoring_center"></div>
                 <div id="autoScoring_right"></div>
+
+                <div id="reminderToSwitchToTeleop">
+                    Remember to switch to Teleop after Autonomous is over!
+                </div>
             </div>
 
 
@@ -163,6 +169,19 @@
                 <br><br>
                 <a class="downloadLink" href="data/matchData.csv" download>Download CSV data</a>
             </div>
+
+            <div id="PitScouting">
+                <div id="PitScoutingInput"></div>
+                <br>
+                Robot Photo: 
+                <br>
+                <input type="file" id="robotPhoto" name="photoname" accept=".jpg, .jpeg, .png, image/png, image/jpeg">
+                <br><br>
+                <textarea placeholder="Comments" id="pitComments" maxlength="140"></textarea>
+                <br><br>
+                <button id="submitPitReport" onclick="submitPitReport();">Submit Pit Report</button>
+            </div>
+
         </div>
 
         <script type="text/javascript">

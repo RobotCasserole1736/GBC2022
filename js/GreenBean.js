@@ -73,6 +73,11 @@ function submitReport(){
 	idScoutingStation();
 }
 
+function submitPitReport(){
+	savePitData();
+	resetForm();
+}
+
 function clearHistory()
 {
 	if(document.getElementById("history_password").value == "Beans")
@@ -116,6 +121,31 @@ function serverSubmit(matchData)
     xmlhttp.send();
 }
 
+function serverPitSubmit(matchData)
+{
+    var xmlhttp = new XMLHttpRequest();
+
+    var sendData = "matchData=";
+    sendData += matchData;
+
+    xmlhttp.onreadystatechange = function()
+    {
+        if(xmlhttp.readyState == 4)
+        {
+            if(xmlhttp.status == 200)
+            {
+                return;
+            }
+            else
+            {
+                alert("Error submitting data - check that server is up!");
+            }
+        }
+    };
+
+    xmlhttp.open("GET", "./php/logPitData.php?" + sendData, true);
+    xmlhttp.send();
+}
 
 function lookUpTeam(matchNum, station)
 {

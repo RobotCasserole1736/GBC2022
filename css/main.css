@@ -15,12 +15,18 @@
 #autoScoring_center {
     float: left; 
     width: 28%;
-   
 }
 
 #autoScoring_right {
     float: left; 
     width: 28%;
+}
+
+#reminderToSwitchToTeleop {
+    clear: left;
+    float: left;
+    width: 50%;
+    visibility: hidden;
 }
 
 #teleopScoring_left  {
