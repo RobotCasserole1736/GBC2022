@@ -30,7 +30,7 @@ function AutoFormInit(){
     addElList("autoScoring_left",button("undoScore('autonomous');","Undo Score"))
     addElList("autoScoring_center",PC2Bar("Autonomous","Lower Goal"))
     addElList("autoScoring_right",title("Tarmac"))
-    addElList("autoScoring_right",checkBox("Left Tarmac: ","leftTarmac"))
+    addElList("autoScoring_right",tarmacCheckBox("Left Tarmac: ","leftTarmac"))
 }
 
 function TeleFormInit(){
@@ -72,7 +72,7 @@ function PC2Bar(period,type){
     TR=document.createElement("TR")
     for(let i=1; i<2; i++){
         TD=document.createElement("TD")
-        TD.innerHTML="<button onclick=\"pcScore('"+period.toLowerCase()+"', '"+type.toLowerCase()+"', "+i+");\">"+i+"</button>"
+        TD.innerHTML="<button onclick=\"pcScore('"+period.toLowerCase()+"', '"+type.toLowerCase()+"', "+i+");\">Score</button>"
         TR.appendChild(TD)
     }
     txt=document.createTextNode("Cargo Scored in "+type+": ")
@@ -138,7 +138,6 @@ function createInnerHtmlReader(id,period,type){
 }
 
 function updateData(){
-    console.log("update")
     var scoreList={}
     for(let i=0; i<innerHTMLList.length;i++){
         scoreList[innerHTMLList[i][0]]=0
@@ -152,7 +151,6 @@ function updateData(){
 }
 
 function updateDataTarmac(){
-    console.log("update")
     setTimeout(startReminder, 5000)
     var scoreList={}
     for(let i=0; i<innerHTMLList.length;i++){
@@ -167,7 +165,7 @@ function updateDataTarmac(){
 }
 
 function startReminder(){
-    alert("Hello");
+    document.getElementById("reminderToSwitchToTeleop").style.visibility = "visible";
 }
 
 function resetForm(){
@@ -183,6 +181,7 @@ function resetForm(){
     for(let i=0; i<pitMultipleChoiceList.length;i++){
         document.getElementById(pitMultipleChoiceList[i]).value=0
     }
+    document.getElementById("reminderToSwitchToTeleop").style.visibility = "hidden";
     defaultReset()
     updateData()
 }
